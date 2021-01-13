@@ -39,8 +39,7 @@
     "coverage": "cat ./coverage/lcov.info | env-cmd -f ./ci.test.env codacy-coverage",
     "dev": "env-cmd -f ./my.env nodemon server.js 0.0.0.0",
     "prod": "env-cmd -f ./my.prod.env node server.js 0.0.0.0",
-    "lint": "eslint lib",
-    "@whooze/minimed-connect-to-nightscout-1": "^1.5.0"
+    "lint": "eslint lib"
   },
   "main": "server.js",
   "config": {
@@ -95,6 +94,7 @@
     "lodash": "^4.17.20",
     "memory-cache": "^0.2.0",
     "mime": "^2.4.6",
+    "minimed-connect-to-nightscout": "^1.5.0"
     "moment": "^2.27.0",
     "moment-locales-webpack-plugin": "^1.2.0",
     "moment-timezone": "^0.5.31",
