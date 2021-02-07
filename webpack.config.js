@@ -71,9 +71,13 @@ pluginArray.push(new MomentLocalesPlugin({
 const rules = [
   {
     test: /\.(js|jsx)$/,
-    exclude: /node_modules/,
     use: {
-      loader: "babel-loader"
+      loader: 'babel-loader',
+      options: {
+        babelrc: true,
+        cacheDirectory: true,
+        extends: path.join(__dirname + '/.babelrc')
+      }
     }
   },
   {
@@ -103,7 +107,6 @@ const rules = [
 
 const appEntry = ['./bundle/bundle.source.js'];
 const clockEntry = ['./bundle/bundle.clocks.source.js'];
-const reportEntry = ['./bundle/bundle.reports.source.js'];
 
 let mode = 'production';
 let publicPath = '/bundle/';
@@ -118,7 +121,6 @@ if (process.env.NODE_ENV == 'development') {
 
   appEntry.unshift(hot);
   clockEntry.unshift(hot);
-  reportEntry.unshift(hot);
 
   rules.unshift({
     enforce: "pre",
@@ -158,11 +160,10 @@ module.exports = {
   context: path.resolve(__dirname, '.'),
   entry: {
     app: appEntry,
-    clock: clockEntry,
-    report: reportEntry
+    clock: clockEntry
   },
   output: {
-    path: path.resolve(__dirname, './tmp'),
+    path: path.resolve(__dirname, './tmp/public'),
     publicPath,
     filename: 'js/bundle.[name].js',
     sourceMapFilename: 'js/bundle.[name].js.map',
